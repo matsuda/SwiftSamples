@@ -13,6 +13,7 @@
 		0EEDD3B41AF7D76E00DA41AB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EEDD3B31AF7D76E00DA41AB /* Images.xcassets */; };
 		0EEDD3B71AF7D76E00DA41AB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EEDD3B51AF7D76E00DA41AB /* LaunchScreen.xib */; };
 		0EEDD3C31AF7D76E00DA41AB /* TestGeocoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEDD3C21AF7D76E00DA41AB /* TestGeocoderTests.swift */; };
+		0EEDD3CF1AF7DB4400DA41AB /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEDD3CE1AF7DB4400DA41AB /* Util.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		0EEDD3BC1AF7D76E00DA41AB /* TestGeocoderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestGeocoderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EEDD3C11AF7D76E00DA41AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0EEDD3C21AF7D76E00DA41AB /* TestGeocoderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestGeocoderTests.swift; sourceTree = "<group>"; };
+		0EEDD3CE1AF7DB4400DA41AB /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Util.swift; path = ../../Util.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				0EEDD3B31AF7D76E00DA41AB /* Images.xcassets */,
 				0EEDD3B51AF7D76E00DA41AB /* LaunchScreen.xib */,
 				0EEDD3AA1AF7D76E00DA41AB /* Supporting Files */,
+				0EEDD3CE1AF7DB4400DA41AB /* Util.swift */,
 			);
 			path = TestGeocoder;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EEDD3AF1AF7D76E00DA41AB /* ViewController.swift in Sources */,
+				0EEDD3CF1AF7DB4400DA41AB /* Util.swift in Sources */,
 				0EEDD3AD1AF7D76E00DA41AB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -409,6 +413,7 @@
 				0EEDD3C81AF7D76E00DA41AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0EEDD3C91AF7D76E00DA41AB /* Build configuration list for PBXNativeTarget "TestGeocoderTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +422,7 @@
 				0EEDD3CB1AF7D76E00DA41AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
