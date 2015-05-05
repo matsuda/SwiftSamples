@@ -21,11 +21,12 @@ UITableViewDataSource, UITableViewDelegate {
 //    }()
     var latitude: CLLocationDegrees?
     var longitude: CLLocationDegrees?
+    var placemark: CLPlacemark?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        APPLog()
+        self.title = "CoreLocation"
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -38,7 +39,7 @@ UITableViewDataSource, UITableViewDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func tapGeocoderButton(sender: AnyObject) {
+    @IBAction func tapGeocoder(sender: AnyObject) {
         let address = "渋谷区"
         var geocoder = CLGeocoder()
         geocoder .geocodeAddressString(address, completionHandler: { (placemarks, error) -> Void in
@@ -66,6 +67,31 @@ UITableViewDataSource, UITableViewDelegate {
         return manager
     }
 
+    func existCoordinate() -> Bool {
+        return self.latitude != nil
+    }
+
+    func reverseGeocoder() {
+        let location = CLLocation(latitude: self.latitude!, longitude: self.longitude!)
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
+            if error == nil {
+                let placemark = placemarks.first as! CLPlacemark
+                self.placemark = placemark
+                APPLog("name = \(placemark.name)")
+                APPLog("country = \(placemark.country)")
+                APPLog("administrativeArea = \(placemark.administrativeArea)")
+                APPLog("subAdministrativeArea = \(placemark.subAdministrativeArea)")
+                APPLog("locality = \(placemark.locality)")
+                APPLog("subLocality = \(placemark.subLocality)")
+                APPLog("thoroughfare = \(placemark.thoroughfare)")
+                APPLog("subThoroughfare = \(placemark.subThoroughfare)")
+                APPLog("region = \(placemark.region)")
+                self.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: UITableViewRowAnimation.Automatic)
+            }
+        })
+    }
+
     // MARK: location manager delegate
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         APPLog("status = \(status.rawValue)")
@@ -87,7 +113,8 @@ UITableViewDataSource, UITableViewDelegate {
         latitude = location.coordinate.latitude
         longitude = location.coordinate.longitude
         locationManager.stopUpdatingLocation()
-        self.tableView.reloadData()
+//        self.tableView.reloadData()
+        self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Automatic)
     }
 
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
@@ -108,6 +135,8 @@ UITableViewDataSource, UITableViewDelegate {
         switch section {
         case 0:
             return 2
+        case 1:
+            return 5
         default:
             return 0
         }
@@ -116,26 +145,64 @@ UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "coordinate"
+            return "Coordinate"
         default:
-            return ""
+            return "Reverse Geocoder"
         }
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! UITableViewCell
-        switch indexPath.row {
+        switch indexPath.section {
         case 0:
-            cell.textLabel?.text = "latitude"
-            cell.detailTextLabel!.text = "\(self.latitude ?? 0)"
+            switch indexPath.row {
+            case 0:
+                cell.textLabel?.text = "latitude"
+                cell.detailTextLabel!.text = "\(self.latitude ?? 0)"
+            default:
+                cell.textLabel?.text = "longitude"
+                cell.detailTextLabel?.text = "\(self.longitude ?? 0)"
+            }
         case 1:
-            cell.textLabel?.text = "longitude"
-            cell.detailTextLabel?.text = "\(self.longitude ?? 0)"
+            let emptyString = ""
+            switch indexPath.row {
+            case 0:
+                cell.textLabel?.text = ""
+                cell.detailTextLabel!.text = "reverseGeocoder"
+            case 1:
+                cell.textLabel?.text = "country"
+                cell.detailTextLabel!.text = "\(self.placemark?.country ?? emptyString)"
+            case 2:
+                cell.textLabel?.text = "administrativeArea"
+                cell.detailTextLabel!.text = "\(self.placemark?.administrativeArea ?? emptyString)"
+            case 3:
+                cell.textLabel?.text = "locality"
+                cell.detailTextLabel!.text = "\(self.placemark?.locality ?? emptyString)"
+            default:
+                cell.textLabel?.text = "subLocality"
+                cell.detailTextLabel!.text = "\(self.placemark?.subLocality ?? emptyString)"
+            }
         default:
-            cell.textLabel?.text = "gecode"
-            cell.detailTextLabel!.text = ""
+            break
         }
         return cell
+    }
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        switch indexPath.section {
+        case 1:
+            switch indexPath.row {
+            case 0:
+                if existCoordinate() {
+                    reverseGeocoder()
+                }
+            default:
+                break
+            }
+        default:
+            break
+        }
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 }
 
