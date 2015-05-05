@@ -16,23 +16,50 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dfm-b1-ke5">
-                                <rect key="frame" x="277" y="145" width="46" height="30"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="8LG-6I-BCH">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="Oxp-MH-taA" detailTextLabel="nHc-AJ-dtx" style="IBUITableViewCellStyleValue1" id="5fU-jb-K2l">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5fU-jb-K2l" id="cDJ-7q-d8Y">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Latitude" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Oxp-MH-taA">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="XX.XXXXX" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nHc-AJ-dtx">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
-                                    <action selector="tapGeocoderButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ppr-rI-owH"/>
+                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="eJh-zK-T0p"/>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="8R4-WG-NeT"/>
                                 </connections>
-                            </button>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Dfm-b1-ke5" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="125" id="4lj-tA-1OH"/>
-                            <constraint firstAttribute="centerX" secondItem="Dfm-b1-ke5" secondAttribute="centerX" id="huF-SU-hCu"/>
+                            <constraint firstItem="8LG-6I-BCH" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="3bs-4t-2kg"/>
+                            <constraint firstAttribute="trailing" secondItem="8LG-6I-BCH" secondAttribute="trailing" id="Lk0-UC-ZAe"/>
+                            <constraint firstItem="8LG-6I-BCH" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="URd-r8-Ybn"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="8LG-6I-BCH" secondAttribute="bottom" id="z7F-JZ-6gu"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="yMo-yw-30x"/>
+                    <connections>
+                        <outlet property="tableView" destination="8LG-6I-BCH" id="VZq-g6-X8h"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
