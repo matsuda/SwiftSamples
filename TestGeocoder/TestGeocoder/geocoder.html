@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+        <script>
+        var geocoder = new google.maps.Geocoder();
+        function search(query){
+            var func = function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    var locations = [];
+                    for(var i=0, len=results.length; i<len; i++){
+                        var ll = results[i].geometry.location;
+                        var poi = {
+                            "name": extractPoi(results[i]),
+                            "address": extractAddress(results[i]),
+                            "lat": ll.lat(),
+                            "lon" : ll.lng()
+                        };
+                        locations.push(poi);
+                    }
+                    // document.location = "geocoder://" + JSON.stringify(locations);
+					var jsonString = JSON.stringify(locations);
+					document.location = "geocoder://" + encodeURI(jsonString);
+                }else{
+                    document.location = "error://" + status;
+                }
+            }
+            geocoder.geocode({'address': query}, func);
+        }
+        // 住所リストの中から名称を取得
+        function extractPoi(geocoder_results){
+            var address_components = geocoder_results.address_components;
+            for(var i=0, len = address_components.length; i<len; i++){
+                var comp = address_components[i];
+                for(var j=0, len2 = comp.types.length; j<len2; j++){
+                    if(comp.types[j] == "point_of_interest"){
+                        return comp.long_name;
+                    }
+                }
+            }
+            return extractAddress(geocoder_results);
+        }
+        // 住所に含まれる「日本, 」はいらないのでトル
+        function extractAddress(geocoder_results){
+            return  geocoder_results.formatted_address.replace(/^日本, /, "");
+        }
+        </script>
+    </head>
+    <body />
+</html>

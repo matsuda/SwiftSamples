@@ -119,9 +119,7 @@ UITableViewDataSource, UITableViewDelegate {
         case 1:
             return 5
         case 2:
-            return 1
-        case 3:
-            return 1
+            return 3
         default:
             return 0
         }
@@ -133,12 +131,8 @@ UITableViewDataSource, UITableViewDelegate {
             return "Coordinate"
         case 1:
             return "Reverse Geocoder"
-        case 2:
-            return "Geocoder"
-        case 3:
-            return "Local Search"
         default:
-            return ""
+            return "Others"
         }
     }
 
@@ -150,9 +144,11 @@ UITableViewDataSource, UITableViewDelegate {
             case 0:
                 cell.textLabel?.text = "latitude"
                 cell.detailTextLabel!.text = "\(self.latitude ?? 0)"
-            default:
+            case 1:
                 cell.textLabel?.text = "longitude"
                 cell.detailTextLabel?.text = "\(self.longitude ?? 0)"
+            default:
+                break
             }
         case 1:
             let emptyString = ""
@@ -169,16 +165,26 @@ UITableViewDataSource, UITableViewDelegate {
             case 3:
                 cell.textLabel?.text = "locality"
                 cell.detailTextLabel!.text = "\(self.placemark?.locality ?? emptyString)"
-            default:
+            case 4:
                 cell.textLabel?.text = "subLocality"
                 cell.detailTextLabel!.text = "\(self.placemark?.subLocality ?? emptyString)"
+            default:
+                break
             }
         case 2:
-            cell.textLabel?.text = ""
-            cell.detailTextLabel!.text = "Geocoder"
-        case 3:
-            cell.textLabel?.text = ""
-            cell.detailTextLabel!.text = "Local Search"
+            switch indexPath.row {
+            case 0:
+                cell.textLabel?.text = ""
+                cell.detailTextLabel!.text = "Geocoder"
+            case 1:
+                cell.textLabel?.text = ""
+                cell.detailTextLabel!.text = "Local Search"
+            case 2:
+                cell.textLabel?.text = ""
+                cell.detailTextLabel!.text = "Google Maps JavaScript API"
+            default:
+                break
+            }
         default:
             break
         }
@@ -197,9 +203,16 @@ UITableViewDataSource, UITableViewDelegate {
                 break
             }
         case 2:
-            performSegueWithIdentifier("Geocoder", sender: self)
-        case 3:
-            performSegueWithIdentifier("LocalSearch", sender: self)
+            switch indexPath.row {
+            case 0:
+                performSegueWithIdentifier("Geocoder", sender: self)
+            case 1:
+                performSegueWithIdentifier("LocalSearch", sender: self)
+            case 2:
+                performSegueWithIdentifier("Google", sender: self)
+            default:
+                break
+            }
         default:
             break
         }

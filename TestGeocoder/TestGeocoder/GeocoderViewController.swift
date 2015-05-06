@@ -15,9 +15,10 @@ class GeocoderViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
 
-    @IBOutlet weak var textField: UITextField!
+//    @IBOutlet weak var textField: UITextField!
 
     var placemarks: [CLPlacemark] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -106,6 +107,7 @@ class GeocoderViewController: UIViewController, UITableViewDataSource, UITableVi
     */
 
     func tapCancel() {
+        self.searchBar.resignFirstResponder()
         self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }
 

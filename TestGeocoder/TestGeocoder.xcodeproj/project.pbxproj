@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0E5C1FD81AF92558005AFD42 /* GeocoderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5C1FD71AF92558005AFD42 /* GeocoderViewController.swift */; };
+		0E6FF4AB1AFA64EC003389A0 /* GoogleGeocodingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6FF4AA1AFA64EC003389A0 /* GoogleGeocodingViewController.swift */; };
+		0E6FF4AD1AFA6524003389A0 /* GoogleGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6FF4AC1AFA6524003389A0 /* GoogleGeocoder.swift */; };
 		0EDE31781AF9E69A0083A273 /* LocalSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDE31771AF9E69A0083A273 /* LocalSearchViewController.swift */; };
 		0EEDD3AD1AF7D76E00DA41AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEDD3AC1AF7D76E00DA41AB /* AppDelegate.swift */; };
 		0EEDD3AF1AF7D76E00DA41AB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEDD3AE1AF7D76E00DA41AB /* ViewController.swift */; };
@@ -16,6 +18,7 @@
 		0EEDD3B71AF7D76E00DA41AB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EEDD3B51AF7D76E00DA41AB /* LaunchScreen.xib */; };
 		0EEDD3C31AF7D76E00DA41AB /* TestGeocoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEDD3C21AF7D76E00DA41AB /* TestGeocoderTests.swift */; };
 		0EEDD3CF1AF7DB4400DA41AB /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEDD3CE1AF7DB4400DA41AB /* Util.swift */; };
+		0EF4D8CF1AFA6E2D003886D5 /* geocoder.html in Resources */ = {isa = PBXBuildFile; fileRef = 0EF4D8CE1AFA6E2D003886D5 /* geocoder.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +33,8 @@
 
 /* Begin PBXFileReference section */
 		0E5C1FD71AF92558005AFD42 /* GeocoderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeocoderViewController.swift; sourceTree = "<group>"; };
+		0E6FF4AA1AFA64EC003389A0 /* GoogleGeocodingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleGeocodingViewController.swift; sourceTree = "<group>"; };
+		0E6FF4AC1AFA6524003389A0 /* GoogleGeocoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleGeocoder.swift; sourceTree = "<group>"; };
 		0EDE31771AF9E69A0083A273 /* LocalSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalSearchViewController.swift; sourceTree = "<group>"; };
 		0EEDD3A71AF7D76E00DA41AB /* TestGeocoder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestGeocoder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EEDD3AB1AF7D76E00DA41AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -42,6 +47,7 @@
 		0EEDD3C11AF7D76E00DA41AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0EEDD3C21AF7D76E00DA41AB /* TestGeocoderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestGeocoderTests.swift; sourceTree = "<group>"; };
 		0EEDD3CE1AF7DB4400DA41AB /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Util.swift; path = ../../Util.swift; sourceTree = "<group>"; };
+		0EF4D8CE1AFA6E2D003886D5 /* geocoder.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = geocoder.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,11 +93,14 @@
 				0EEDD3AE1AF7D76E00DA41AB /* ViewController.swift */,
 				0E5C1FD71AF92558005AFD42 /* GeocoderViewController.swift */,
 				0EDE31771AF9E69A0083A273 /* LocalSearchViewController.swift */,
+				0E6FF4AA1AFA64EC003389A0 /* GoogleGeocodingViewController.swift */,
+				0E6FF4AC1AFA6524003389A0 /* GoogleGeocoder.swift */,
 				0EEDD3B01AF7D76E00DA41AB /* Main.storyboard */,
 				0EEDD3B31AF7D76E00DA41AB /* Images.xcassets */,
 				0EEDD3B51AF7D76E00DA41AB /* LaunchScreen.xib */,
 				0EEDD3AA1AF7D76E00DA41AB /* Supporting Files */,
 				0EEDD3CE1AF7DB4400DA41AB /* Util.swift */,
+				0EF4D8CE1AFA6E2D003886D5 /* geocoder.html */,
 			);
 			path = TestGeocoder;
 			sourceTree = "<group>";
@@ -201,6 +210,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EF4D8CF1AFA6E2D003886D5 /* geocoder.html in Resources */,
 				0EEDD3B21AF7D76E00DA41AB /* Main.storyboard in Resources */,
 				0EEDD3B71AF7D76E00DA41AB /* LaunchScreen.xib in Resources */,
 				0EEDD3B41AF7D76E00DA41AB /* Images.xcassets in Resources */,
@@ -223,7 +233,9 @@
 			files = (
 				0EEDD3AF1AF7D76E00DA41AB /* ViewController.swift in Sources */,
 				0EEDD3CF1AF7DB4400DA41AB /* Util.swift in Sources */,
+				0E6FF4AD1AFA6524003389A0 /* GoogleGeocoder.swift in Sources */,
 				0EDE31781AF9E69A0083A273 /* LocalSearchViewController.swift in Sources */,
+				0E6FF4AB1AFA64EC003389A0 /* GoogleGeocodingViewController.swift in Sources */,
 				0E5C1FD81AF92558005AFD42 /* GeocoderViewController.swift in Sources */,
 				0EEDD3AD1AF7D76E00DA41AB /* AppDelegate.swift in Sources */,
 			);
