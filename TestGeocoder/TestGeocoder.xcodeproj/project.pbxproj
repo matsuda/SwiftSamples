@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E5C1FD81AF92558005AFD42 /* GeocoderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5C1FD71AF92558005AFD42 /* GeocoderViewController.swift */; };
 		0EEDD3AD1AF7D76E00DA41AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEDD3AC1AF7D76E00DA41AB /* AppDelegate.swift */; };
 		0EEDD3AF1AF7D76E00DA41AB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEDD3AE1AF7D76E00DA41AB /* ViewController.swift */; };
 		0EEDD3B21AF7D76E00DA41AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EEDD3B01AF7D76E00DA41AB /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E5C1FD71AF92558005AFD42 /* GeocoderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeocoderViewController.swift; sourceTree = "<group>"; };
 		0EEDD3A71AF7D76E00DA41AB /* TestGeocoder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestGeocoder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EEDD3AB1AF7D76E00DA41AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0EEDD3AC1AF7D76E00DA41AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 			children = (
 				0EEDD3AC1AF7D76E00DA41AB /* AppDelegate.swift */,
 				0EEDD3AE1AF7D76E00DA41AB /* ViewController.swift */,
+				0E5C1FD71AF92558005AFD42 /* GeocoderViewController.swift */,
 				0EEDD3B01AF7D76E00DA41AB /* Main.storyboard */,
 				0EEDD3B31AF7D76E00DA41AB /* Images.xcassets */,
 				0EEDD3B51AF7D76E00DA41AB /* LaunchScreen.xib */,
@@ -217,6 +220,7 @@
 			files = (
 				0EEDD3AF1AF7D76E00DA41AB /* ViewController.swift in Sources */,
 				0EEDD3CF1AF7DB4400DA41AB /* Util.swift in Sources */,
+				0E5C1FD81AF92558005AFD42 /* GeocoderViewController.swift in Sources */,
 				0EEDD3AD1AF7D76E00DA41AB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

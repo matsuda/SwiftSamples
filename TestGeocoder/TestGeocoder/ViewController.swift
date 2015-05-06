@@ -39,25 +39,6 @@ UITableViewDataSource, UITableViewDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func tapGeocoder(sender: AnyObject) {
-        let address = "渋谷区"
-        var geocoder = CLGeocoder()
-        geocoder .geocodeAddressString(address, completionHandler: { (placemarks, error) -> Void in
-            if error != nil {
-                APPLog("\(error)")
-            } else {
-                APPLog("\(placemarks.count)")
-                if let place = placemarks.first as? CLPlacemark {
-                    APPLog("\(place)")
-                    APPLog("\(place.name)")
-                    let coordinate = place.location.coordinate
-                    APPLog("latitude : \(coordinate.latitude)")
-                    APPLog("longitude : \(coordinate.longitude)")
-                }
-            }
-        })
-    }
-
     func setupLocationManager() -> CLLocationManager {
         APPLog()
         let manager = CLLocationManager()
@@ -128,7 +109,7 @@ UITableViewDataSource, UITableViewDelegate {
 
     // MARK: UITableView datasource & delegate
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -137,6 +118,8 @@ UITableViewDataSource, UITableViewDelegate {
             return 2
         case 1:
             return 5
+        case 2:
+            return 1
         default:
             return 0
         }
@@ -146,8 +129,12 @@ UITableViewDataSource, UITableViewDelegate {
         switch section {
         case 0:
             return "Coordinate"
-        default:
+        case 1:
             return "Reverse Geocoder"
+        case 2:
+            return "Geocoder"
+        default:
+            return ""
         }
     }
 
@@ -182,6 +169,9 @@ UITableViewDataSource, UITableViewDelegate {
                 cell.textLabel?.text = "subLocality"
                 cell.detailTextLabel!.text = "\(self.placemark?.subLocality ?? emptyString)"
             }
+        case 2:
+            cell.textLabel?.text = ""
+            cell.detailTextLabel!.text = "Geocoder"
         default:
             break
         }
@@ -199,6 +189,8 @@ UITableViewDataSource, UITableViewDelegate {
             default:
                 break
             }
+        case 2:
+            performSegueWithIdentifier("Geocoder", sender: self)
         default:
             break
         }
