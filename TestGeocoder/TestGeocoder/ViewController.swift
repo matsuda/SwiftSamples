@@ -109,7 +109,7 @@ UITableViewDataSource, UITableViewDelegate {
 
     // MARK: UITableView datasource & delegate
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -119,6 +119,8 @@ UITableViewDataSource, UITableViewDelegate {
         case 1:
             return 5
         case 2:
+            return 1
+        case 3:
             return 1
         default:
             return 0
@@ -133,6 +135,8 @@ UITableViewDataSource, UITableViewDelegate {
             return "Reverse Geocoder"
         case 2:
             return "Geocoder"
+        case 3:
+            return "Local Search"
         default:
             return ""
         }
@@ -172,6 +176,9 @@ UITableViewDataSource, UITableViewDelegate {
         case 2:
             cell.textLabel?.text = ""
             cell.detailTextLabel!.text = "Geocoder"
+        case 3:
+            cell.textLabel?.text = ""
+            cell.detailTextLabel!.text = "Local Search"
         default:
             break
         }
@@ -191,6 +198,8 @@ UITableViewDataSource, UITableViewDelegate {
             }
         case 2:
             performSegueWithIdentifier("Geocoder", sender: self)
+        case 3:
+            performSegueWithIdentifier("LocalSearch", sender: self)
         default:
             break
         }
