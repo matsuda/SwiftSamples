@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E18BB111B4A6D2E0012AA4C /* sample.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0E18BB101B4A6D2E0012AA4C /* sample.jpg */; };
 		0E6E1D5B1B4A52EC00828C64 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E1D5A1B4A52EC00828C64 /* AppDelegate.swift */; };
 		0E6E1D5D1B4A52EC00828C64 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E1D5C1B4A52EC00828C64 /* ViewController.swift */; };
 		0E6E1D601B4A52EC00828C64 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E6E1D5E1B4A52EC00828C64 /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E18BB101B4A6D2E0012AA4C /* sample.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sample.jpg; sourceTree = "<group>"; };
 		0E6E1D571B4A52EC00828C64 /* TestVisualEffect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestVisualEffect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E6E1D5A1B4A52EC00828C64 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E6E1D5C1B4A52EC00828C64 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 		0E6E1D591B4A52EC00828C64 /* TestVisualEffect */ = {
 			isa = PBXGroup;
 			children = (
+				0E18BB101B4A6D2E0012AA4C /* sample.jpg */,
 				0E6E1D5A1B4A52EC00828C64 /* AppDelegate.swift */,
 				0E6E1D5C1B4A52EC00828C64 /* ViewController.swift */,
 				0E6E1D5E1B4A52EC00828C64 /* Main.storyboard */,
@@ -127,6 +130,7 @@
 				0E6E1D651B4A52EC00828C64 /* LaunchScreen.storyboard in Resources */,
 				0E6E1D621B4A52EC00828C64 /* Assets.xcassets in Resources */,
 				0E6E1D601B4A52EC00828C64 /* Main.storyboard in Resources */,
+				0E18BB111B4A6D2E0012AA4C /* sample.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +291,7 @@
 				0E6E1D6B1B4A52EC00828C64 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

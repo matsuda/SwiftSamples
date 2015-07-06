@@ -29,6 +29,9 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="0Ng-hO-qni" secondAttribute="bottom" constant="20" id="xRZ-ev-EWS"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="gradientView" destination="0Ng-hO-qni" id="ZKx-64-j37"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
