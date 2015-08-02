@@ -57,24 +57,25 @@ UITableViewDataSource, UITableViewDelegate {
         let geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
             if error == nil {
-                let placemark = placemarks.first as! CLPlacemark
-                self.placemark = placemark
-                APPLog("name = \(placemark.name)")
-                APPLog("country = \(placemark.country)")
-                APPLog("administrativeArea = \(placemark.administrativeArea)")
-                APPLog("subAdministrativeArea = \(placemark.subAdministrativeArea)")
-                APPLog("locality = \(placemark.locality)")
-                APPLog("subLocality = \(placemark.subLocality)")
-                APPLog("thoroughfare = \(placemark.thoroughfare)")
-                APPLog("subThoroughfare = \(placemark.subThoroughfare)")
-                APPLog("region = \(placemark.region)")
-                self.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: UITableViewRowAnimation.Automatic)
+                if let placemarks = placemarks, let placemark = placemarks.first {
+                    self.placemark = placemark
+                    APPLog("name = \(placemark.name)")
+                    APPLog("country = \(placemark.country)")
+                    APPLog("administrativeArea = \(placemark.administrativeArea)")
+                    APPLog("subAdministrativeArea = \(placemark.subAdministrativeArea)")
+                    APPLog("locality = \(placemark.locality)")
+                    APPLog("subLocality = \(placemark.subLocality)")
+                    APPLog("thoroughfare = \(placemark.thoroughfare)")
+                    APPLog("subThoroughfare = \(placemark.subThoroughfare)")
+                    APPLog("region = \(placemark.region)")
+                    self.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: UITableViewRowAnimation.Automatic)
+                }
             }
         })
     }
 
     // MARK: location manager delegate
-    func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         APPLog("status = \(status.rawValue)")
         switch status {
         case .AuthorizedAlways, .AuthorizedWhenInUse:
@@ -86,19 +87,20 @@ UITableViewDataSource, UITableViewDelegate {
         }
     }
 
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        let location = locations.last as! CLLocation
-        APPLog("location : \(location)")
-        APPLog("latitude : \(location.coordinate.latitude)")
-        APPLog("longitude : \(location.coordinate.longitude)")
-        latitude = location.coordinate.latitude
-        longitude = location.coordinate.longitude
-        locationManager.stopUpdatingLocation()
-//        self.tableView.reloadData()
-        self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Automatic)
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last {
+            APPLog("location : \(location)")
+            APPLog("latitude : \(location.coordinate.latitude)")
+            APPLog("longitude : \(location.coordinate.longitude)")
+            latitude = location.coordinate.latitude
+            longitude = location.coordinate.longitude
+            locationManager.stopUpdatingLocation()
+//            self.tableView.reloadData()
+            self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Automatic)
+        }
     }
 
-    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         APPLog("error : \(error)")
         if error.domain == kCLErrorDomain {
             if CLError(rawValue: error.code) == .Denied {
@@ -137,7 +139,7 @@ UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell!
         switch indexPath.section {
         case 0:
             switch indexPath.row {

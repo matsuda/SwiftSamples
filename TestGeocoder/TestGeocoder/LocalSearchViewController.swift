@@ -44,7 +44,8 @@ class LocalSearchViewController: UIViewController {
         request.naturalLanguageQuery = self.textField.text
         let search = MKLocalSearch(request: request)
         search.startWithCompletionHandler { (response, error) -> Void in
-            for item in response.mapItems as! [MKMapItem] {
+            guard let response = response else { return }
+            for item in response.mapItems {
                 let placemark = item.placemark
                 APPLog("name : \(placemark.name)")
                 APPLog("title : \(placemark.title)")

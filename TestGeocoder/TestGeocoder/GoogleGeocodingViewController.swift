@@ -64,7 +64,7 @@ class GoogleGeocodingViewController: UIViewController, UITableViewDataSource, UI
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell!
 //        let placemark = self.placemarks[indexPath.row]
 //        cell.textLabel?.text = "\(placemark.administrativeArea)"
 //        let coordinate = placemark.location.coordinate
@@ -94,10 +94,11 @@ class GoogleGeocodingViewController: UIViewController, UITableViewDataSource, UI
 
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         APPLog()
-        let text = searchBar.text
         searchBar.resignFirstResponder()
         searchBar.showsCancelButton = false
-        requestGeocoder(text)
+        if let text = searchBar.text {
+            requestGeocoder(text)
+        }
     }
 
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {

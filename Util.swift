@@ -8,6 +8,6 @@
 
 import Foundation
 
-func APPLog(_ message: String = "", line: Int = __LINE__, function: String = __FUNCTION__) {
-    println("\(function)[\(line)] \(message)")
+func APPLog(message: String = "", line: Int = __LINE__, function: String = __FUNCTION__) {
+    print("\(function)[\(line)] \(message)")
 }

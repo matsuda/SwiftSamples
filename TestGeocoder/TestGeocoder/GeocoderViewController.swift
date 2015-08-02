@@ -53,24 +53,25 @@ class GeocoderViewController: UIViewController, UITableViewDataSource, UITableVi
         if address.isEmpty {
             return
         }
-        var geocoder = CLGeocoder()
+        let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(address, completionHandler: { (placemarks, error) -> Void in
             if error != nil {
                 APPLog("\(error)")
             } else {
                 self.placemarks.removeAll(keepCapacity: false)
-                for placemark in placemarks as! [CLPlacemark] {
+                guard let placemarks = placemarks else { return }
+                for placemark in placemarks {
                     self.placemarks.append(placemark)
                     APPLog("name : \(placemark.name)")
-                    let coordinate = placemark.location.coordinate
-                    APPLog("latitude : \(coordinate.latitude)")
-                    APPLog("longitude : \(coordinate.longitude)")
+                    let coordinate = placemark.location?.coordinate
+                    APPLog("latitude : \(coordinate!.latitude)")
+                    APPLog("longitude : \(coordinate!.longitude)")
                     APPLog("administrativeArea : \(placemark.administrativeArea)")
                     APPLog("subAdministrativeArea : \(placemark.subAdministrativeArea)")
                     APPLog("locality : \(placemark.locality)")
                     APPLog("subLocality : \(placemark.subLocality)")
                     APPLog("addressDictionary : \(placemark.addressDictionary)")
-                    let address = ABCreateStringWithAddressDictionary(placemark.addressDictionary, false)
+                    let address = ABCreateStringWithAddressDictionary(placemark.addressDictionary!, false)
                     APPLog("address : \(address)")
                 }
                 self.tableView.reloadData()
@@ -116,7 +117,7 @@ class GeocoderViewController: UIViewController, UITableViewDataSource, UITableVi
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell!
         let placemark = self.placemarks[indexPath.row]
 //        cell.textLabel?.text = "\(placemark.administrativeArea)"
 //        let coordinate = placemark.location.coordinate
@@ -146,10 +147,11 @@ class GeocoderViewController: UIViewController, UITableViewDataSource, UITableVi
 
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         APPLog()
-        let text = searchBar.text
         searchBar.resignFirstResponder()
         searchBar.showsCancelButton = false
-        requestGeocoder(text)
+        if let text = searchBar.text {
+            requestGeocoder(text)
+        }
     }
 
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {

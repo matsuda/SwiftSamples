@@ -26,36 +26,37 @@ class GoogleGeocoder: NSObject, UIWebViewDelegate {
         super.init()
         webView.delegate = self
         if let path = NSBundle.mainBundle().pathForResource("geocoder", ofType: "html") {
-            if let url = NSURL(fileURLWithPath: path) {
-                let request = NSURLRequest(URL: url)
-                self.webView.loadRequest(request)
-            }
+            let url = NSURL(fileURLWithPath: path)
+            let request = NSURLRequest(URL: url)
+            self.webView.loadRequest(request)
         }
     }
 
     func locationByWord(word: String, completion handler: GeocoderHandler) {
         self.handler = handler
         var text = word
-        text = text.stringByReplacingOccurrencesOfString("\"", withString: "", options: nil, range: nil)
-        text = text.stringByReplacingOccurrencesOfString("'", withString: "", options: nil, range: nil)
+        text = text.stringByReplacingOccurrencesOfString("\"", withString: "", options: [], range: nil)
+        text = text.stringByReplacingOccurrencesOfString("'", withString: "", options: [], range: nil)
         let js = "search('\(text)')"
         self.webView.stringByEvaluatingJavaScriptFromString(js)
     }
 
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         if let str = request.URL?.absoluteString {
-            if let r = str.rangeOfString("error://") {
+            if let _ = str.rangeOfString("error://") {
                 APPLog("error")
                 return false
-            } else if let r = str.rangeOfString("geocoder://") {
-                let encodedString = str.stringByReplacingOccurrencesOfString("geocoder://", withString: "", options: nil, range: nil)
+            } else if let _ = str.rangeOfString("geocoder://") {
+                let encodedString = str.stringByReplacingOccurrencesOfString("geocoder://", withString: "", options: [], range: nil)
                 let decodedString = decodeString(encodedString)
-                var error: NSError?
-                if let json = NSJSONSerialization.JSONObjectWithData(decodedString.dataUsingEncoding(NSUTF8StringEncoding)!, options: NSJSONReadingOptions.AllowFragments, error: &error) as? NSDictionary {
+                do {
+                    let json = try NSJSONSerialization.JSONObjectWithData(decodedString.dataUsingEncoding(NSUTF8StringEncoding)!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
                     APPLog("JJJJ >>> \(json)")
                     if let block = self.handler {
                         block(json, nil)
                     }
+                } catch let error {
+                    APPLog("JSON parse error : \(error)")
                 }
                 return false
             }
