@@ -14,6 +14,7 @@
 		0E895BAF1B8AC9EA00D56ADD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E895BAD1B8AC9EA00D56ADD /* LaunchScreen.storyboard */; };
 		0E895BB81B8AEA8800D56ADD /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E895BB61B8AEA8800D56ADD /* ReactiveCocoa.framework */; };
 		0E895BB91B8AEA8800D56ADD /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E895BB71B8AEA8800D56ADD /* Result.framework */; };
+		0EAFD3BA1B8D69580004E3DD /* LinqToObjectiveC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EAFD3B91B8D69580004E3DD /* LinqToObjectiveC.framework */; };
 		0EE00FCD1B8C187D0005A9DC /* DummySignInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE00FCC1B8C187D0005A9DC /* DummySignInService.swift */; settings = {ASSET_TAGS = (); }; };
 		0EE00FCF1B8C6E9A0005A9DC /* TwitterSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE00FCE1B8C6E9A0005A9DC /* TwitterSearchController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
@@ -28,6 +29,7 @@
 		0E895BB01B8AC9EA00D56ADD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E895BB61B8AEA8800D56ADD /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
 		0E895BB71B8AEA8800D56ADD /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
+		0EAFD3B91B8D69580004E3DD /* LinqToObjectiveC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LinqToObjectiveC.framework; path = Carthage/Build/iOS/LinqToObjectiveC.framework; sourceTree = "<group>"; };
 		0EE00FCC1B8C187D0005A9DC /* DummySignInService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummySignInService.swift; sourceTree = "<group>"; };
 		0EE00FCE1B8C6E9A0005A9DC /* TwitterSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterSearchController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -37,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EAFD3BA1B8D69580004E3DD /* LinqToObjectiveC.framework in Frameworks */,
 				0E895BB81B8AEA8800D56ADD /* ReactiveCocoa.framework in Frameworks */,
 				0E895BB91B8AEA8800D56ADD /* Result.framework in Frameworks */,
 			);
@@ -48,6 +51,7 @@
 		0E895B981B8AC9EA00D56ADD = {
 			isa = PBXGroup;
 			children = (
+				0EAFD3B91B8D69580004E3DD /* LinqToObjectiveC.framework */,
 				0E895BB61B8AEA8800D56ADD /* ReactiveCocoa.framework */,
 				0E895BB71B8AEA8800D56ADD /* Result.framework */,
 				0E895BA31B8AC9EA00D56ADD /* TestReactiveCocoa */,
@@ -153,6 +157,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ReactiveCocoa.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/LinqToObjectiveC.framework",
 			);
 			outputPaths = (
 			);
