@@ -10,6 +10,7 @@ import UIKit
 import Accounts
 import Social
 import ReactiveCocoa
+import LinqToObjectiveC
 
 class TwitterSearchController: UIViewController {
 
@@ -26,6 +27,8 @@ class TwitterSearchController: UIViewController {
         self.accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
     }()
 
+    var tweets: [Tweet]?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,16 +42,17 @@ class TwitterSearchController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "showResults" {
+            let destination = segue.destinationViewController as! SearchResultsController
+            destination.tweets = self.tweets
+        }
     }
-    */
 
     func reactTextField() {
         textField.rac_textSignal()
@@ -76,6 +80,7 @@ class TwitterSearchController: UIViewController {
                 }
                 return false
             }
+            .throttle(0.5)
             .flattenMap { [weak self] (value: AnyObject!) -> RACStream! in
                 if let strongSelf = self {
                     return strongSelf.signalForSearchWithText(value as! String)
@@ -83,8 +88,18 @@ class TwitterSearchController: UIViewController {
                 return nil
             }
             .deliverOnMainThread()
-            .subscribeNext({ (value: AnyObject!) -> Void in
-                print(value)
+            .subscribeNext({ [weak self] (value: AnyObject!) -> Void in
+//                print(value)
+                guard let strongSelf = self else { return }
+                guard let jsonSearchResult = value as? [String: AnyObject] else { return }
+                guard let statuses = jsonSearchResult["statuses"] as? [AnyObject] else { return }
+
+                let tweets = (statuses as NSArray).linq_select { (value: AnyObject!) -> AnyObject! in
+                    return Tweet.tweetWithStatus(value as! [String: AnyObject])
+                }
+                strongSelf.tweets = tweets as? [Tweet]
+                strongSelf.performSegueWithIdentifier("showResults", sender: self)
+                strongSelf.textField.text = ""
             }) { (error: NSError!) -> Void in
                 print("An error occurred: \(error)")
             }

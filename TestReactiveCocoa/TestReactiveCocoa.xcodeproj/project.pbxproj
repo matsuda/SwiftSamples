@@ -15,6 +15,9 @@
 		0E895BB81B8AEA8800D56ADD /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E895BB61B8AEA8800D56ADD /* ReactiveCocoa.framework */; };
 		0E895BB91B8AEA8800D56ADD /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E895BB71B8AEA8800D56ADD /* Result.framework */; };
 		0EAFD3BA1B8D69580004E3DD /* LinqToObjectiveC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EAFD3B91B8D69580004E3DD /* LinqToObjectiveC.framework */; };
+		0EAFD3C21B8D8D580004E3DD /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAFD3C11B8D8D580004E3DD /* Tweet.swift */; settings = {ASSET_TAGS = (); }; };
+		0EAFD3C41B8D8DC50004E3DD /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAFD3C31B8D8DC50004E3DD /* SearchResultsController.swift */; settings = {ASSET_TAGS = (); }; };
+		0EAFD3C61B8D91060004E3DD /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAFD3C51B8D91060004E3DD /* TweetCell.swift */; settings = {ASSET_TAGS = (); }; };
 		0EE00FCD1B8C187D0005A9DC /* DummySignInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE00FCC1B8C187D0005A9DC /* DummySignInService.swift */; settings = {ASSET_TAGS = (); }; };
 		0EE00FCF1B8C6E9A0005A9DC /* TwitterSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE00FCE1B8C6E9A0005A9DC /* TwitterSearchController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
@@ -30,6 +33,9 @@
 		0E895BB61B8AEA8800D56ADD /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
 		0E895BB71B8AEA8800D56ADD /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		0EAFD3B91B8D69580004E3DD /* LinqToObjectiveC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LinqToObjectiveC.framework; path = Carthage/Build/iOS/LinqToObjectiveC.framework; sourceTree = "<group>"; };
+		0EAFD3C11B8D8D580004E3DD /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
+		0EAFD3C31B8D8DC50004E3DD /* SearchResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
+		0EAFD3C51B8D91060004E3DD /* TweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
 		0EE00FCC1B8C187D0005A9DC /* DummySignInService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummySignInService.swift; sourceTree = "<group>"; };
 		0EE00FCE1B8C6E9A0005A9DC /* TwitterSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterSearchController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,6 +84,9 @@
 				0E895BB01B8AC9EA00D56ADD /* Info.plist */,
 				0EE00FCC1B8C187D0005A9DC /* DummySignInService.swift */,
 				0EE00FCE1B8C6E9A0005A9DC /* TwitterSearchController.swift */,
+				0EAFD3C11B8D8D580004E3DD /* Tweet.swift */,
+				0EAFD3C31B8D8DC50004E3DD /* SearchResultsController.swift */,
+				0EAFD3C51B8D91060004E3DD /* TweetCell.swift */,
 			);
 			path = TestReactiveCocoa;
 			sourceTree = "<group>";
@@ -173,8 +182,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E895BA71B8AC9EA00D56ADD /* ViewController.swift in Sources */,
+				0EAFD3C61B8D91060004E3DD /* TweetCell.swift in Sources */,
+				0EAFD3C21B8D8D580004E3DD /* Tweet.swift in Sources */,
 				0EE00FCF1B8C6E9A0005A9DC /* TwitterSearchController.swift in Sources */,
 				0EE00FCD1B8C187D0005A9DC /* DummySignInService.swift in Sources */,
+				0EAFD3C41B8D8DC50004E3DD /* SearchResultsController.swift in Sources */,
 				0E895BA51B8AC9EA00D56ADD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
