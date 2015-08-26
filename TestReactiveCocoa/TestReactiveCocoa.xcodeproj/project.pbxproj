@@ -15,6 +15,7 @@
 		0E895BB81B8AEA8800D56ADD /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E895BB61B8AEA8800D56ADD /* ReactiveCocoa.framework */; };
 		0E895BB91B8AEA8800D56ADD /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E895BB71B8AEA8800D56ADD /* Result.framework */; };
 		0EE00FCD1B8C187D0005A9DC /* DummySignInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE00FCC1B8C187D0005A9DC /* DummySignInService.swift */; settings = {ASSET_TAGS = (); }; };
+		0EE00FCF1B8C6E9A0005A9DC /* TwitterSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE00FCE1B8C6E9A0005A9DC /* TwitterSearchController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		0E895BB61B8AEA8800D56ADD /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
 		0E895BB71B8AEA8800D56ADD /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		0EE00FCC1B8C187D0005A9DC /* DummySignInService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummySignInService.swift; sourceTree = "<group>"; };
+		0EE00FCE1B8C6E9A0005A9DC /* TwitterSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterSearchController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 				0E895BAD1B8AC9EA00D56ADD /* LaunchScreen.storyboard */,
 				0E895BB01B8AC9EA00D56ADD /* Info.plist */,
 				0EE00FCC1B8C187D0005A9DC /* DummySignInService.swift */,
+				0EE00FCE1B8C6E9A0005A9DC /* TwitterSearchController.swift */,
 			);
 			path = TestReactiveCocoa;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E895BA71B8AC9EA00D56ADD /* ViewController.swift in Sources */,
+				0EE00FCF1B8C6E9A0005A9DC /* TwitterSearchController.swift in Sources */,
 				0EE00FCD1B8C187D0005A9DC /* DummySignInService.swift in Sources */,
 				0E895BA51B8AC9EA00D56ADD /* AppDelegate.swift in Sources */,
 			);
@@ -228,7 +232,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -266,7 +270,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
