@@ -14,9 +14,19 @@ class ViewController: UIViewController {
     lazy var locationManager: CLLocationManager = self.setupLocationManager()
     var deferredUpdates = false
 
+    @IBOutlet weak var form1: UIView!
+    @IBOutlet weak var form2: UIView!
+    @IBOutlet weak var form3: UIView!
+    @IBOutlet weak var form4: UIView!
+    @IBOutlet weak var form5: UIView!
+    @IBOutlet weak var form6: UIView!
+    @IBOutlet weak var form7: UIView!
+    @IBOutlet weak var form8: UIView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        prepareViews()
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -32,6 +42,33 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    func prepareViews() {
+        if let label = form1.viewWithTag(1) as? UILabel {
+            label.text = "startDate"
+        }
+        if let label = form2.viewWithTag(1) as? UILabel {
+            label.text = "confidence"
+        }
+        if let label = form3.viewWithTag(1) as? UILabel {
+            label.text = "stationary"
+        }
+        if let label = form4.viewWithTag(1) as? UILabel {
+            label.text = "walking"
+        }
+        if let label = form5.viewWithTag(1) as? UILabel {
+            label.text = "running"
+        }
+        if let label = form6.viewWithTag(1) as? UILabel {
+            label.text = "automotive"
+        }
+        if let label = form7.viewWithTag(1) as? UILabel {
+            label.text = "cycling"
+        }
+        if let label = form8.viewWithTag(1) as? UILabel {
+            label.text = "unknown"
+        }
     }
 }
 
