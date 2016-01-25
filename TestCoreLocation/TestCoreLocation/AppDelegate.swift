@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        applicationWillRegisterForRemoteNotifications(application)
         return true
     }
 
@@ -44,3 +45,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+// MARK: - APNs
+
+extension AppDelegate {
+    func applicationWillRegisterForRemoteNotifications(application: UIApplication) {
+        let types: UIUserNotificationType = [.Badge, .Alert, .Sound]
+        let settings = UIUserNotificationSettings(forTypes: types, categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+    }
+
+    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+    }
+}
