@@ -187,11 +187,9 @@ extension ViewController: CLLocationManagerDelegate {
         guard abs(Int32(interval)) < 15 else { return }
 
         Logger.log("latitude : \(location.coordinate.latitude), longitude : \(location.coordinate.longitude)")
-        /*
         if UIApplication.sharedApplication().applicationState == .Background {
             sendNotificaiton("\(locations.first?.coordinate.latitude) : \(locations.first?.coordinate.longitude)")
         }
-        */
 
         /*
         if !deferredUpdates {

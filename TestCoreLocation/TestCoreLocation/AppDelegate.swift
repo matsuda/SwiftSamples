@@ -24,6 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if launchOptions?[UIApplicationLaunchOptionsLocationKey] != nil {
             Logger.log("significantLocationChangeMonitoring received!!!")
+            let notification = UILocalNotification()
+            notification.alertBody = "Launch by significantLocationChangeMonitoring"
+            application.presentLocalNotificationNow(notification)
+
             let controller = locationViewController
             controller.locationManager.startUpdatingLocation()
         }
