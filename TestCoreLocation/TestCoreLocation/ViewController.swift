@@ -8,11 +8,13 @@
 
 import UIKit
 import CoreLocation
+import CoreMotion
 
 class ViewController: UIViewController {
 
     lazy var locationManager: CLLocationManager = self.setupLocationManager()
     var deferredUpdates = false
+    let motionManager = CMMotionActivityManager()
 
     @IBOutlet weak var form1: UIView!
     @IBOutlet weak var form2: UIView!
@@ -70,6 +72,42 @@ class ViewController: UIViewController {
             label.text = "unknown"
         }
     }
+
+    func updateViewsForActivity(activity: CMMotionActivity) {
+        if let label = form1.viewWithTag(2) as? UILabel {
+            label.text = "\(activity.startDate)"
+        }
+        if let label = form2.viewWithTag(2) as? UILabel {
+            var text: String!
+            switch activity.confidence {
+            case .High:
+                text = "High"
+            case .Medium:
+                text = "Medium"
+            case .Low:
+                text = "Low"
+            }
+            label.text = text
+        }
+        if let label = form3.viewWithTag(2) as? UILabel {
+            label.text = "\(activity.stationary)"
+        }
+        if let label = form4.viewWithTag(2) as? UILabel {
+            label.text = "\(activity.walking)"
+        }
+        if let label = form5.viewWithTag(2) as? UILabel {
+            label.text = "\(activity.running)"
+        }
+        if let label = form6.viewWithTag(2) as? UILabel {
+            label.text = "\(activity.automotive)"
+        }
+        if let label = form7.viewWithTag(2) as? UILabel {
+            label.text = "\(activity.cycling)"
+        }
+        if let label = form8.viewWithTag(2) as? UILabel {
+            label.text = "\(activity.unknown)"
+        }
+    }
 }
 
 extension ViewController {
@@ -119,10 +157,12 @@ extension ViewController {
 
     func startTracking() {
         locationManager.startUpdatingLocation()
+        startTrackingActivity()
     }
 
     func stopTracking() {
         locationManager.stopUpdatingLocation()
+        stopTrackingActivity()
     }
 }
 
@@ -176,6 +216,39 @@ extension ViewController: CLLocationManagerDelegate {
         deferredUpdates = false
         if let error = error {
             Log("error : \(error)")
+        }
+    }
+}
+
+/*
+// MARK: - CoreMotion
+*/
+
+extension ViewController {
+    func startTrackingActivity() {
+        guard CMMotionActivityManager.isActivityAvailable() else {
+            let alert = UIAlertController(title: "", message: "Motion Activity isn't available", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            presentViewController(alert, animated: true, completion: nil)
+            return
+        }
+
+        motionManager.startActivityUpdatesToQueue(NSOperationQueue.mainQueue()) { [unowned self] (activity: CMMotionActivity?) -> Void in
+            Logger.log("startActivityUpdatesToQueue")
+            guard let activity = activity else { return }
+            Log("activity : \(activity)")
+            self.updateViewsForActivity(activity)
+            /*
+            if activity.running {
+                self.sendNotificaiton("running")
+            }
+            */
+        }
+    }
+
+    func stopTrackingActivity() {
+        if CMMotionActivityManager.isActivityAvailable() {
+            motionManager.stopActivityUpdates()
         }
     }
 }
