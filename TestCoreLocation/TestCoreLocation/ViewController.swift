@@ -34,11 +34,18 @@ class ViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         autorizeTrackLocation()
+        if CMMotionActivityManager.isActivityAvailable() {
+            startTrackingActivity()
+        } else {
+            let alert = UIAlertController(title: "", message: "Motion Activity isn't available", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            presentViewController(alert, animated: true, completion: nil)
+        }
     }
 
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        stopTracking()
+        stopTrackingActivity()
     }
 
     override func didReceiveMemoryWarning() {
@@ -139,7 +146,7 @@ extension ViewController {
         case .NotDetermined:
             locationManager.requestAlwaysAuthorization()
         case .AuthorizedAlways:
-            startTracking()
+            startTrackingLocation()
         default:
             let alert = UIAlertController(
                 title: "Background Location Access Disabled",
@@ -155,14 +162,28 @@ extension ViewController {
         }
     }
 
-    func startTracking() {
-        locationManager.startUpdatingLocation()
-        startTrackingActivity()
+    func startTrackingLocation() {
+        guard CLLocationManager.locationServicesEnabled() else {
+            return
+        }
+        switch CLLocationManager.authorizationStatus() {
+        case .AuthorizedAlways, .AuthorizedWhenInUse:
+            locationManager.startUpdatingLocation()
+        default:
+            return
+        }
     }
 
-    func stopTracking() {
-        locationManager.stopUpdatingLocation()
-        stopTrackingActivity()
+    func stopTrackingLocation() {
+        guard CLLocationManager.locationServicesEnabled() else {
+            return
+        }
+        switch CLLocationManager.authorizationStatus() {
+        case .AuthorizedAlways, .AuthorizedWhenInUse:
+            locationManager.stopUpdatingLocation()
+        default:
+            return
+        }
     }
 }
 
@@ -172,7 +193,7 @@ extension ViewController: CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         switch status {
         case .AuthorizedAlways, .AuthorizedWhenInUse:
-            startTracking()
+            startTrackingLocation()
         default: break
         }
     }
@@ -203,7 +224,7 @@ extension ViewController: CLLocationManagerDelegate {
 
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         Logger.log(__FUNCTION__)
-        Log("error : \(error)")
+        Logger.log("error : \(error)")
     }
 
     func locationManager(manager: CLLocationManager, didFinishDeferredUpdatesWithError error: NSError?) {
@@ -213,7 +234,7 @@ extension ViewController: CLLocationManagerDelegate {
         }
         deferredUpdates = false
         if let error = error {
-            Log("error : \(error)")
+            Logger.log("error : \(error)")
         }
     }
 }
@@ -225,16 +246,13 @@ extension ViewController: CLLocationManagerDelegate {
 extension ViewController {
     func startTrackingActivity() {
         guard CMMotionActivityManager.isActivityAvailable() else {
-            let alert = UIAlertController(title: "", message: "Motion Activity isn't available", preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            presentViewController(alert, animated: true, completion: nil)
             return
         }
 
         motionManager.startActivityUpdatesToQueue(NSOperationQueue.mainQueue()) { [unowned self] (activity: CMMotionActivity?) -> Void in
             Logger.log("startActivityUpdatesToQueue")
             guard let activity = activity else { return }
-            Log("activity : \(activity)")
+            Logger.log("activity : \(activity)")
             self.updateViewsForActivity(activity)
             /*
             if activity.running {
@@ -245,8 +263,10 @@ extension ViewController {
     }
 
     func stopTrackingActivity() {
-        if CMMotionActivityManager.isActivityAvailable() {
-            motionManager.stopActivityUpdates()
+        guard CMMotionActivityManager.isActivityAvailable() else {
+            return
         }
+
+        motionManager.stopActivityUpdates()
     }
 }

@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             let controller = locationViewController
             controller.locationManager.startUpdatingLocation()
+            controller.motionManager
         }
 
         applicationWillRegisterForRemoteNotifications(application)
@@ -47,10 +48,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         Logger.log(__FUNCTION__)
 
+        let controller = locationViewController
         if CLLocationManager.locationServicesEnabled() {
             switch CLLocationManager.authorizationStatus() {
             case .AuthorizedAlways, .AuthorizedWhenInUse:
-                let controller = locationViewController
                 controller.locationManager.stopUpdatingLocation()
                 if CLLocationManager.significantLocationChangeMonitoringAvailable() {
                     controller.locationManager.startMonitoringSignificantLocationChanges()
@@ -58,6 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             default: break
             }
         }
+        controller.stopTrackingActivity()
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
@@ -69,10 +71,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         Logger.log(__FUNCTION__)
 
+        let controller = locationViewController
         if CLLocationManager.locationServicesEnabled() {
             switch CLLocationManager.authorizationStatus() {
             case .AuthorizedAlways, .AuthorizedWhenInUse:
-                let controller = locationViewController
                 if CLLocationManager.significantLocationChangeMonitoringAvailable() {
                     controller.locationManager.stopMonitoringSignificantLocationChanges()
                 }
@@ -80,6 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             default: break
             }
         }
+        controller.startTrackingActivity()
     }
 
     func applicationWillTerminate(application: UIApplication) {
