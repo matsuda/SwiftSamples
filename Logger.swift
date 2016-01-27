@@ -66,11 +66,11 @@ public class Logger {
         */
     }
 
-    public class func log(body: Any? = nil) {
-        log(body == nil ? "" : body)
+    public class func log(body: Any? = nil, function: String = __FUNCTION__, file: String = __FILE__, line: Int = __LINE__) {
+        log(body == nil ? "" : body, function: function, file: file, line: line)
     }
 
-    public class func log(@autoclosure body: () -> Any) {
-        self.defaultLogger.log(body)
+    public class func log(@autoclosure body: () -> Any, function: String = __FUNCTION__, file: String = __FILE__, line: Int = __LINE__) {
+        self.defaultLogger.log(body, function: function, file: file, line: line)
     }
 }
